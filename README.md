@@ -12,7 +12,7 @@
 
 ## 현재 연결된 서비스
 
-포털 메인 화면에는 아래 8개 모듈 카드가 포함되어 있습니다.
+포털 메인 화면에는 아래 9개 모듈 카드가 포함되어 있습니다.
 
 1. Daily K-Stock Dashboard
 2. Market Pulse KR
@@ -22,6 +22,7 @@
 6. ETF Performance
 7. Stock Performance
 8. Financial Sentinel
+9. DART Financial Analysis
 
 각 카드는 외부 Cloud Run URL로 새 탭(`target="_blank"`)에서 열립니다.
 
