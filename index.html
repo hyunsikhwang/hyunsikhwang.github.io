@@ -6,6 +6,7 @@
 <title>Financial Intelligence Suite</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
@@ -107,6 +108,57 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
         }
+        .tool-card {
+            position: relative;
+            min-height: 180px;
+            overflow: hidden;
+        }
+        .tool-card > div:first-of-type {
+            position: relative;
+            z-index: 1;
+            padding-right: 96px;
+        }
+        .serial-launch {
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            z-index: 2;
+            width: 88px;
+            height: 96px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Bungee Shade", Impact, sans-serif;
+            font-size: 74px;
+            line-height: 1;
+            letter-spacing: 0;
+            color: #000000;
+            background: linear-gradient(135deg, #f9f9fb 0%, #e2e2e4 100%);
+            border: 1px solid #c4c7c7;
+            box-shadow: 5px 5px 0 #000000;
+            transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+        }
+        .tool-card:hover .serial-launch,
+        .tool-card:focus-visible .serial-launch {
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0 #000000;
+            background: #ffffff;
+        }
+        .tool-card:active .serial-launch {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0 #000000;
+        }
+        @media (max-width: 640px) {
+            .tool-card > div:first-of-type {
+                padding-right: 78px;
+            }
+            .serial-launch {
+                width: 72px;
+                height: 80px;
+                font-size: 60px;
+                right: 14px;
+            }
+        }
     </style>
 </head>
 <body class="bg-surface font-body-md text-on-surface antialiased">
@@ -132,7 +184,8 @@
 <!-- Tool Grid -->
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-lg justify-center max-w-7xl mx-auto">
 <!-- Card 1: Daily K-Stock Dashboard -->
-<a class="relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" href="https://daily-k-stock-dashboard-239485161480.us-west1.run.app" rel="noopener noreferrer" target="_blank">
+<a class="tool-card relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" href="https://daily-k-stock-dashboard-239485161480.us-west1.run.app" rel="noopener noreferrer" target="_blank">
+<span aria-hidden="true" class="serial-launch">1</span>
 <div>
 <div class="flex items-center justify-between mb-md">
 <div class="w-10 h-10 flex items-center justify-center bg-surface-container-low rounded-lg text-primary">
@@ -150,7 +203,8 @@ Consolidated view of KOSPI and KOSDAQ movers with technical filter overlays.
 </a>
 
 <!-- Card 2: Market Pulse KR -->
-<a class="relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" href="https://market-pulse-kr-239485161480.us-west1.run.app/" rel="noopener noreferrer" target="_blank">
+<a class="tool-card relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" href="https://market-pulse-kr-239485161480.us-west1.run.app/" rel="noopener noreferrer" target="_blank">
+<span aria-hidden="true" class="serial-launch">2</span>
 <div>
 <div class="flex items-center justify-between mb-md">
 <div class="w-10 h-10 flex items-center justify-center bg-surface-container-low rounded-lg text-primary">
@@ -168,7 +222,8 @@ Real-time sentiment and liquidity tracking for the Korean equity markets.
 </a>
 
 <!-- Card 3: Global Index Performance -->
-<a class="relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" href="https://global-stock-index-performance-239485161480.us-west1.run.app/" rel="noopener noreferrer" target="_blank">
+<a class="tool-card relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" href="https://global-stock-index-performance-239485161480.us-west1.run.app/" rel="noopener noreferrer" target="_blank">
+<span aria-hidden="true" class="serial-launch">3</span>
 <div>
 <div class="flex items-center justify-between mb-md">
 <div class="w-10 h-10 flex items-center justify-center bg-surface-container-low rounded-lg text-primary">
@@ -186,7 +241,8 @@ Cross-asset correlation analysis and benchmark tracking across major global indi
 </a>
 
 <!-- Card 4: Calendar Explorer -->
-<a class="relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" href="https://kospi-calendar-explorer-239485161480.us-west1.run.app/" rel="noopener noreferrer" target="_blank">
+<a class="tool-card relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" href="https://kospi-calendar-explorer-239485161480.us-west1.run.app/" rel="noopener noreferrer" target="_blank">
+<span aria-hidden="true" class="serial-launch">4</span>
 <div>
 <div class="flex items-center justify-between mb-md">
 <div class="w-10 h-10 flex items-center justify-center bg-surface-container-low rounded-lg text-primary">
@@ -204,7 +260,8 @@ Institutional-grade economic calendar tracking dividends, earnings, and macro ev
 </a>
 
 <!-- Card 5: Volatility Analyzer -->
-<a class="relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" href="https://kospi-volatility-returns-analyzer-239485161480.us-west1.run.app/" rel="noopener noreferrer" target="_blank">
+<a class="tool-card relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" href="https://kospi-volatility-returns-analyzer-239485161480.us-west1.run.app/" rel="noopener noreferrer" target="_blank">
+<span aria-hidden="true" class="serial-launch">5</span>
 <div>
 <div class="flex items-center justify-between mb-md">
 <div class="w-10 h-10 flex items-center justify-center bg-surface-container-low rounded-lg text-primary">
@@ -222,7 +279,8 @@ Historical and implied volatility curves with proprietary risk modeling.
 </a>
 
 <!-- Card 6: ETF Performance -->
-<a class="relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" href="https://etf-performance-239485161480.us-west1.run.app" rel="noopener noreferrer" target="_blank">
+<a class="tool-card relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" href="https://etf-performance-239485161480.us-west1.run.app" rel="noopener noreferrer" target="_blank">
+<span aria-hidden="true" class="serial-launch">6</span>
 <div>
 <div class="flex items-center justify-between mb-md">
 <div class="w-10 h-10 flex items-center justify-center bg-surface-container-low rounded-lg text-primary">
@@ -240,7 +298,8 @@ Track ETF returns and comparative performance to identify allocation opportuniti
 </a>
 
 <!-- Card 7: Stock Performance -->
-<a class="relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" href="https://stock-performance-239485161480.us-west1.run.app" rel="noopener noreferrer" target="_blank">
+<a class="tool-card relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" href="https://stock-performance-239485161480.us-west1.run.app" rel="noopener noreferrer" target="_blank">
+<span aria-hidden="true" class="serial-launch">7</span>
 <div>
 <div class="flex items-center justify-between mb-md">
 <div class="w-10 h-10 flex items-center justify-center bg-surface-container-low rounded-lg text-primary">
@@ -258,7 +317,8 @@ Analyze individual stock performance trends and benchmark relative strength.
 </a>
 
 <!-- Card 8: Financial Sentinel -->
-<a class="relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" href="https://financial-sentinel-239485161480.us-west1.run.app" rel="noopener noreferrer" target="_blank">
+<a class="tool-card relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" href="https://financial-sentinel-239485161480.us-west1.run.app" rel="noopener noreferrer" target="_blank">
+<span aria-hidden="true" class="serial-launch">8</span>
 <div>
 <div class="flex items-center justify-between mb-md">
 <div class="w-10 h-10 flex items-center justify-center bg-surface-container-low rounded-lg text-primary">
@@ -276,7 +336,8 @@ Monitor risk signals and key financial alerts through a dedicated surveillance d
 </a>
 
 <!-- Card 9: DART Financial Analysis -->
-<a class="relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" href="https://dart-financial-analysis-239485161480.us-west1.run.app" rel="noopener noreferrer" target="_blank">
+<a class="tool-card relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" href="https://dart-financial-analysis-239485161480.us-west1.run.app" rel="noopener noreferrer" target="_blank">
+<span aria-hidden="true" class="serial-launch">9</span>
 <div>
 <div class="flex items-center justify-between mb-md">
 <div class="w-10 h-10 flex items-center justify-center bg-surface-container-low rounded-lg text-primary">
@@ -294,7 +355,8 @@ Analyze DART disclosures and company financial statements for fundamental resear
 </a>
 
 <!-- Card 10: Global Market Index Dashboard -->
-<a class="relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" href="https://global-market-index-dashboard-239485161480.us-west1.run.app" rel="noopener noreferrer" target="_blank">
+<a class="tool-card relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" href="https://global-market-index-dashboard-239485161480.us-west1.run.app" rel="noopener noreferrer" target="_blank">
+<span aria-hidden="true" class="serial-launch">A</span>
 <div>
 <div class="flex items-center justify-between mb-md">
 <div class="w-10 h-10 flex items-center justify-center bg-surface-container-low rounded-lg text-primary">
