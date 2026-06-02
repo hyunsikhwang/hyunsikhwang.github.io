@@ -330,6 +330,12 @@
     const toggleButtons = Array.from(document.querySelectorAll("[data-mode-toggle]"));
     let currentMode = "public";
     let hotkeyTargets = new Map();
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    function getAlternateMode() {
+        return currentMode === "public" ? "private" : "public";
+    }
 
     function escapeHtml(value) {
         return value.replace(/[&<>"']/g, (char) => ({
@@ -420,6 +426,12 @@ ${description}
             return;
         }
 
+        if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+            event.preventDefault();
+            setMode(getAlternateMode());
+            return;
+        }
+
         const target = hotkeyTargets.get(event.key.toUpperCase());
         if (!target) {
             return;
@@ -428,6 +440,31 @@ ${description}
         event.preventDefault();
         target.click();
     });
+
+    document.addEventListener("touchstart", (event) => {
+        const touch = event.touches[0];
+        if (!touch) {
+            return;
+        }
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+    }, { passive: true });
+
+    document.addEventListener("touchend", (event) => {
+        const touch = event.changedTouches[0];
+        if (!touch) {
+            return;
+        }
+
+        const deltaX = touch.clientX - touchStartX;
+        const deltaY = touch.clientY - touchStartY;
+        const isHorizontalSwipe = Math.abs(deltaX) >= 52 && Math.abs(deltaX) > Math.abs(deltaY) * 1.4;
+        if (!isHorizontalSwipe) {
+            return;
+        }
+
+        setMode(getAlternateMode());
+    }, { passive: true });
 
     renderCards(currentMode);
 </script>
