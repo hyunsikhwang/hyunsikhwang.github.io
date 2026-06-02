@@ -30,10 +30,12 @@
 
 ### Private 모드
 
-우측 상단의 `Private` 토글을 선택하면 기존 Public 카드가 전환 애니메이션과 함께 사라지고, 아래 1개 private 메뉴 카드가 표시됩니다.
+우측 상단의 `Private` 토글을 선택하면 기존 Public 카드가 전환 애니메이션과 함께 사라지고, 아래 2개 private 메뉴 카드가 표시됩니다.
 
 1. Retirement Countdown
    - `https://retirement-countdown-the-final-mission-239485161480.us-west1.run.app/`
+2. Naver Blog Scraper
+   - `https://naver-blog-scraper-239485161480.us-west1.run.app`
 
 각 카드는 외부 Cloud Run URL로 새 탭(`target="_blank"`)에서 열립니다.
 
