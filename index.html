@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-
-<html class="light" lang="en"><head>
+<html class="light" lang="en">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Financial Intelligence Suite</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
       tailwind.config = {
@@ -107,10 +106,46 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
         }
+        .mode-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            padding: 3px;
+            border: 1px solid #d4d4d8;
+            background: #f4f4f5;
+            border-radius: 0.5rem;
+        }
+        .mode-toggle button {
+            min-width: 76px;
+            height: 32px;
+            border-radius: 0.375rem;
+            font-family: "Manrope", Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1;
+            color: #52525b;
+            transition: background 160ms ease, color 160ms ease, box-shadow 160ms ease;
+        }
+        .mode-toggle button[aria-pressed="true"] {
+            background: #ffffff;
+            color: #18181b;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+        }
+        .tool-grid {
+            transform-style: preserve-3d;
+            transition: transform 260ms ease, opacity 260ms ease;
+            will-change: transform, opacity;
+        }
+        .tool-grid.is-flipping {
+            transform: rotateY(90deg);
+            opacity: 0.25;
+        }
         .tool-card {
             position: relative;
             min-height: 180px;
             overflow: hidden;
+            transform: rotateY(0deg);
+            backface-visibility: hidden;
         }
         .tool-card > div:first-of-type {
             position: relative;
@@ -141,6 +176,14 @@
             transform: translateY(1px);
         }
         @media (max-width: 640px) {
+            nav {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+            .mode-toggle button {
+                min-width: 64px;
+                font-size: 12px;
+            }
             .tool-card > div:first-of-type {
                 padding-right: 58px;
             }
@@ -152,226 +195,193 @@
     </style>
 </head>
 <body class="bg-surface font-body-md text-on-surface antialiased">
-<!-- Top Navigation Bar -->
 <header class="w-full border-b border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950 sticky top-0 z-50">
 <nav class="flex justify-between items-center h-16 px-8 max-w-7xl mx-auto w-full">
 <div class="text-lg font-bold tracking-tight text-neutral-900 dark:text-neutral-50 font-manrope antialiased">
                 Investor Portal
             </div>
 <div class="flex items-center gap-4">
-<button class="cursor-pointer active:opacity-70 transition-opacity p-2 text-neutral-900 dark:text-neutral-50">
+<div aria-label="Portal visibility" class="mode-toggle" role="group">
+<button aria-pressed="true" data-mode-toggle="public" type="button">Public</button>
+<button aria-pressed="false" data-mode-toggle="private" type="button">Private</button>
+</div>
+<button aria-label="Account" class="cursor-pointer active:opacity-70 transition-opacity p-2 text-neutral-900 dark:text-neutral-50" type="button">
 <span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
 </button>
 </div>
 </nav>
 </header>
 <main class="max-w-7xl mx-auto px-8 py-xxl min-h-screen">
-<!-- Hero Section -->
 <div class="mb-xxl text-center max-w-2xl mx-auto">
 <h1 class="font-h1 text-h1 mb-md">Financial Intelligence Suite</h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant">Select a specialized module to begin your market analysis. Professional grade tools for institutional accuracy.</p>
 </div>
-<!-- Tool Grid -->
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-lg justify-center max-w-7xl mx-auto">
-<!-- Card 1: Daily K-Stock Dashboard -->
-<a aria-keyshortcuts="1" class="tool-card relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" data-hotkey="1" href="https://daily-k-stock-dashboard-239485161480.us-west1.run.app" rel="noopener noreferrer" target="_blank">
-<span aria-hidden="true" class="serial-launch">1</span>
-<div>
-<div class="flex items-center justify-between mb-md">
-<div class="w-10 h-10 flex items-center justify-center bg-surface-container-low rounded-lg text-primary">
-<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-</div>
-<span class="material-symbols-outlined text-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity" data-icon="north_east">north_east</span>
-</div>
-<h3 class="font-manrope text-body-lg font-semibold text-on-surface group-hover:text-primary transition-colors">Daily K-Stock Dashboard</h3>
-</div>
-<!-- Tooltip -->
-<div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 bg-neutral-900 dark:bg-neutral-800 text-white dark:text-neutral-100 text-xs p-3 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-30 text-center font-manrope font-normal leading-relaxed">
-Consolidated view of KOSPI and KOSDAQ movers with technical filter overlays.
-<div class="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-neutral-900 dark:border-t-neutral-800"></div>
-</div>
-</a>
-
-<!-- Card 2: Market Pulse KR -->
-<a aria-keyshortcuts="2" class="tool-card relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" data-hotkey="2" href="https://market-pulse-kr-239485161480.us-west1.run.app/" rel="noopener noreferrer" target="_blank">
-<span aria-hidden="true" class="serial-launch">2</span>
-<div>
-<div class="flex items-center justify-between mb-md">
-<div class="w-10 h-10 flex items-center justify-center bg-surface-container-low rounded-lg text-primary">
-<span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
-</div>
-<span class="material-symbols-outlined text-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity" data-icon="north_east">north_east</span>
-</div>
-<h3 class="font-manrope text-body-lg font-semibold text-on-surface group-hover:text-primary transition-colors">Market Pulse KR</h3>
-</div>
-<!-- Tooltip -->
-<div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 bg-neutral-900 dark:bg-neutral-800 text-white dark:text-neutral-100 text-xs p-3 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-30 text-center font-manrope font-normal leading-relaxed">
-Real-time sentiment and liquidity tracking for the Korean equity markets.
-<div class="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-neutral-900 dark:border-t-neutral-800"></div>
-</div>
-</a>
-
-<!-- Card 3: Global Index Performance -->
-<a aria-keyshortcuts="3" class="tool-card relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" data-hotkey="3" href="https://global-stock-index-performance-239485161480.us-west1.run.app/" rel="noopener noreferrer" target="_blank">
-<span aria-hidden="true" class="serial-launch">3</span>
-<div>
-<div class="flex items-center justify-between mb-md">
-<div class="w-10 h-10 flex items-center justify-center bg-surface-container-low rounded-lg text-primary">
-<span class="material-symbols-outlined" data-icon="public">public</span>
-</div>
-<span class="material-symbols-outlined text-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity" data-icon="north_east">north_east</span>
-</div>
-<h3 class="font-manrope text-body-lg font-semibold text-on-surface group-hover:text-primary transition-colors">Global Index Performance</h3>
-</div>
-<!-- Tooltip -->
-<div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 bg-neutral-900 dark:bg-neutral-800 text-white dark:text-neutral-100 text-xs p-3 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-30 text-center font-manrope font-normal leading-relaxed">
-Cross-asset correlation analysis and benchmark tracking across major global indices.
-<div class="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-neutral-900 dark:border-t-neutral-800"></div>
-</div>
-</a>
-
-<!-- Card 4: Calendar Explorer -->
-<a aria-keyshortcuts="4" class="tool-card relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" data-hotkey="4" href="https://kospi-calendar-explorer-239485161480.us-west1.run.app/" rel="noopener noreferrer" target="_blank">
-<span aria-hidden="true" class="serial-launch">4</span>
-<div>
-<div class="flex items-center justify-between mb-md">
-<div class="w-10 h-10 flex items-center justify-center bg-surface-container-low rounded-lg text-primary">
-<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
-</div>
-<span class="material-symbols-outlined text-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity" data-icon="north_east">north_east</span>
-</div>
-<h3 class="font-manrope text-body-lg font-semibold text-on-surface group-hover:text-primary transition-colors">Calendar Explorer</h3>
-</div>
-<!-- Tooltip -->
-<div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 bg-neutral-900 dark:bg-neutral-800 text-white dark:text-neutral-100 text-xs p-3 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-30 text-center font-manrope font-normal leading-relaxed">
-Institutional-grade economic calendar tracking dividends, earnings, and macro events.
-<div class="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-neutral-900 dark:border-t-neutral-800"></div>
-</div>
-</a>
-
-<!-- Card 5: Volatility Analyzer -->
-<a aria-keyshortcuts="5" class="tool-card relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" data-hotkey="5" href="https://kospi-volatility-returns-analyzer-239485161480.us-west1.run.app/" rel="noopener noreferrer" target="_blank">
-<span aria-hidden="true" class="serial-launch">5</span>
-<div>
-<div class="flex items-center justify-between mb-md">
-<div class="w-10 h-10 flex items-center justify-center bg-surface-container-low rounded-lg text-primary">
-<span class="material-symbols-outlined" data-icon="show_chart">show_chart</span>
-</div>
-<span class="material-symbols-outlined text-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity" data-icon="north_east">north_east</span>
-</div>
-<h3 class="font-manrope text-body-lg font-semibold text-on-surface group-hover:text-primary transition-colors">Volatility Analyzer</h3>
-</div>
-<!-- Tooltip -->
-<div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 bg-neutral-900 dark:bg-neutral-800 text-white dark:text-neutral-100 text-xs p-3 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-30 text-center font-manrope font-normal leading-relaxed">
-Historical and implied volatility curves with proprietary risk modeling.
-<div class="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-neutral-900 dark:border-t-neutral-800"></div>
-</div>
-</a>
-
-<!-- Card 6: ETF Performance -->
-<a aria-keyshortcuts="6" class="tool-card relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" data-hotkey="6" href="https://etf-performance-239485161480.us-west1.run.app" rel="noopener noreferrer" target="_blank">
-<span aria-hidden="true" class="serial-launch">6</span>
-<div>
-<div class="flex items-center justify-between mb-md">
-<div class="w-10 h-10 flex items-center justify-center bg-surface-container-low rounded-lg text-primary">
-<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>
-</div>
-<span class="material-symbols-outlined text-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity" data-icon="north_east">north_east</span>
-</div>
-<h3 class="font-manrope text-body-lg font-semibold text-on-surface group-hover:text-primary transition-colors">ETF Performance</h3>
-</div>
-<!-- Tooltip -->
-<div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 bg-neutral-900 dark:bg-neutral-800 text-white dark:text-neutral-100 text-xs p-3 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-30 text-center font-manrope font-normal leading-relaxed">
-Track ETF returns and comparative performance to identify allocation opportunities.
-<div class="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-neutral-900 dark:border-t-neutral-800"></div>
-</div>
-</a>
-
-<!-- Card 7: Stock Performance -->
-<a aria-keyshortcuts="7" class="tool-card relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" data-hotkey="7" href="https://stock-performance-239485161480.us-west1.run.app" rel="noopener noreferrer" target="_blank">
-<span aria-hidden="true" class="serial-launch">7</span>
-<div>
-<div class="flex items-center justify-between mb-md">
-<div class="w-10 h-10 flex items-center justify-center bg-surface-container-low rounded-lg text-primary">
-<span class="material-symbols-outlined" data-icon="trending_up">trending_up</span>
-</div>
-<span class="material-symbols-outlined text-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity" data-icon="north_east">north_east</span>
-</div>
-<h3 class="font-manrope text-body-lg font-semibold text-on-surface group-hover:text-primary transition-colors">Stock Performance</h3>
-</div>
-<!-- Tooltip -->
-<div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 bg-neutral-900 dark:bg-neutral-800 text-white dark:text-neutral-100 text-xs p-3 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-30 text-center font-manrope font-normal leading-relaxed">
-Analyze individual stock performance trends and benchmark relative strength.
-<div class="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-neutral-900 dark:border-t-neutral-800"></div>
-</div>
-</a>
-
-<!-- Card 8: Financial Sentinel -->
-<a aria-keyshortcuts="8" class="tool-card relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" data-hotkey="8" href="https://financial-sentinel-239485161480.us-west1.run.app" rel="noopener noreferrer" target="_blank">
-<span aria-hidden="true" class="serial-launch">8</span>
-<div>
-<div class="flex items-center justify-between mb-md">
-<div class="w-10 h-10 flex items-center justify-center bg-surface-container-low rounded-lg text-primary">
-<span class="material-symbols-outlined" data-icon="shield">shield</span>
-</div>
-<span class="material-symbols-outlined text-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity" data-icon="north_east">north_east</span>
-</div>
-<h3 class="font-manrope text-body-lg font-semibold text-on-surface group-hover:text-primary transition-colors">Financial Sentinel</h3>
-</div>
-<!-- Tooltip -->
-<div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 bg-neutral-900 dark:bg-neutral-800 text-white dark:text-neutral-100 text-xs p-3 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-30 text-center font-manrope font-normal leading-relaxed">
-Monitor risk signals and key financial alerts through a dedicated surveillance dashboard.
-<div class="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-neutral-900 dark:border-t-neutral-800"></div>
-</div>
-</a>
-
-<!-- Card 9: DART Financial Analysis -->
-<a aria-keyshortcuts="9" class="tool-card relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" data-hotkey="9" href="https://dart-financial-analysis-239485161480.us-west1.run.app" rel="noopener noreferrer" target="_blank">
-<span aria-hidden="true" class="serial-launch">9</span>
-<div>
-<div class="flex items-center justify-between mb-md">
-<div class="w-10 h-10 flex items-center justify-center bg-surface-container-low rounded-lg text-primary">
-<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
-</div>
-<span class="material-symbols-outlined text-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity" data-icon="north_east">north_east</span>
-</div>
-<h3 class="font-manrope text-body-lg font-semibold text-on-surface group-hover:text-primary transition-colors">DART Financial Analysis</h3>
-</div>
-<!-- Tooltip -->
-<div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 bg-neutral-900 dark:bg-neutral-800 text-white dark:text-neutral-100 text-xs p-3 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-30 text-center font-manrope font-normal leading-relaxed">
-Analyze DART disclosures and company financial statements for fundamental research workflows.
-<div class="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-neutral-900 dark:border-t-neutral-800"></div>
-</div>
-</a>
-
-<!-- Card 10: Global Market Index Dashboard -->
-<a aria-keyshortcuts="A" class="tool-card relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl" data-hotkey="A" href="https://global-market-index-dashboard-239485161480.us-west1.run.app" rel="noopener noreferrer" target="_blank">
-<span aria-hidden="true" class="serial-launch">A</span>
-<div>
-<div class="flex items-center justify-between mb-md">
-<div class="w-10 h-10 flex items-center justify-center bg-surface-container-low rounded-lg text-primary">
-<span class="material-symbols-outlined" data-icon="language">language</span>
-</div>
-<span class="material-symbols-outlined text-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity" data-icon="north_east">north_east</span>
-</div>
-<h3 class="font-manrope text-body-lg font-semibold text-on-surface group-hover:text-primary transition-colors">Global Market Index Dashboard</h3>
-</div>
-<!-- Tooltip -->
-<div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 bg-neutral-900 dark:bg-neutral-800 text-white dark:text-neutral-100 text-xs p-3 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-30 text-center font-manrope font-normal leading-relaxed">
-Comprehensive tracking and performance dashboard for global market indices and macro indicators.
-<div class="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-neutral-900 dark:border-t-neutral-800"></div>
-</div>
-</a>
-</div>
-<!-- Decorative Subtle Section -->
+<div class="tool-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-lg justify-center max-w-7xl mx-auto" id="tool-grid"></div>
 </main>
 <script>
-    const hotkeyTargets = new Map(
-        Array.from(document.querySelectorAll("[data-hotkey]")).map((card) => [
-            card.dataset.hotkey.toUpperCase(),
-            card,
-        ])
-    );
+    const cardClass = "tool-card relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl";
+    const publicCards = [
+        {
+            key: "1",
+            title: "Daily K-Stock Dashboard",
+            href: "https://daily-k-stock-dashboard-239485161480.us-west1.run.app",
+            icon: "dashboard",
+            description: "Consolidated view of KOSPI and KOSDAQ movers with technical filter overlays.",
+        },
+        {
+            key: "2",
+            title: "Market Pulse KR",
+            href: "https://market-pulse-kr-239485161480.us-west1.run.app/",
+            icon: "monitoring",
+            description: "Real-time sentiment and liquidity tracking for the Korean equity markets.",
+        },
+        {
+            key: "3",
+            title: "Global Index Performance",
+            href: "https://global-stock-index-performance-239485161480.us-west1.run.app/",
+            icon: "public",
+            description: "Cross-asset correlation analysis and benchmark tracking across major global indices.",
+        },
+        {
+            key: "4",
+            title: "Calendar Explorer",
+            href: "https://kospi-calendar-explorer-239485161480.us-west1.run.app/",
+            icon: "calendar_today",
+            description: "Institutional-grade economic calendar tracking dividends, earnings, and macro events.",
+        },
+        {
+            key: "5",
+            title: "Volatility Analyzer",
+            href: "https://kospi-volatility-returns-analyzer-239485161480.us-west1.run.app/",
+            icon: "show_chart",
+            description: "Historical and implied volatility curves with proprietary risk modeling.",
+        },
+        {
+            key: "6",
+            title: "ETF Performance",
+            href: "https://etf-performance-239485161480.us-west1.run.app",
+            icon: "query_stats",
+            description: "Track ETF returns and comparative performance to identify allocation opportunities.",
+        },
+        {
+            key: "7",
+            title: "Stock Performance",
+            href: "https://stock-performance-239485161480.us-west1.run.app",
+            icon: "trending_up",
+            description: "Analyze individual stock performance trends and benchmark relative strength.",
+        },
+        {
+            key: "8",
+            title: "Financial Sentinel",
+            href: "https://financial-sentinel-239485161480.us-west1.run.app",
+            icon: "shield",
+            description: "Monitor risk signals and key financial alerts through a dedicated surveillance dashboard.",
+        },
+        {
+            key: "9",
+            title: "DART Financial Analysis",
+            href: "https://dart-financial-analysis-239485161480.us-west1.run.app",
+            icon: "analytics",
+            description: "Analyze DART disclosures and company financial statements for fundamental research workflows.",
+        },
+        {
+            key: "A",
+            title: "Global Market Index Dashboard",
+            href: "https://global-market-index-dashboard-239485161480.us-west1.run.app",
+            icon: "language",
+            description: "Comprehensive tracking and performance dashboard for global market indices and macro indicators.",
+        },
+    ];
+    const privateCards = [
+        {
+            key: "1",
+            title: "Retirement Countdown",
+            href: "https://retirement-countdown-the-final-mission-239485161480.us-west1.run.app/",
+            icon: "timer",
+            description: "Private countdown mission dashboard for retirement planning milestones.",
+        },
+    ];
+
+    const toolGrid = document.getElementById("tool-grid");
+    const toggleButtons = Array.from(document.querySelectorAll("[data-mode-toggle]"));
+    let currentMode = "public";
+    let hotkeyTargets = new Map();
+
+    function escapeHtml(value) {
+        return value.replace(/[&<>"']/g, (char) => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;",
+        }[char]));
+    }
+
+    function renderCard(card) {
+        const title = escapeHtml(card.title);
+        const description = escapeHtml(card.description);
+        const icon = escapeHtml(card.icon);
+        const key = escapeHtml(card.key);
+        const href = escapeHtml(card.href);
+        return `
+<a aria-keyshortcuts="${key}" class="${cardClass}" data-hotkey="${key}" href="${href}" rel="noopener noreferrer" target="_blank">
+<span aria-hidden="true" class="serial-launch">${key}</span>
+<div>
+<div class="flex items-center justify-between mb-md">
+<div class="w-10 h-10 flex items-center justify-center bg-surface-container-low rounded-lg text-primary">
+<span class="material-symbols-outlined" data-icon="${icon}">${icon}</span>
+</div>
+<span class="material-symbols-outlined text-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity" data-icon="north_east">north_east</span>
+</div>
+<h3 class="font-manrope text-body-lg font-semibold text-on-surface group-hover:text-primary transition-colors">${title}</h3>
+</div>
+<div class="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 bg-neutral-900 dark:bg-neutral-800 text-white dark:text-neutral-100 text-xs p-3 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-30 text-center font-manrope font-normal leading-relaxed">
+${description}
+<div class="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-neutral-900 dark:border-t-neutral-800"></div>
+</div>
+</a>`;
+    }
+
+    function updateHotkeys() {
+        hotkeyTargets = new Map(
+            Array.from(document.querySelectorAll("[data-hotkey]")).map((card) => [
+                card.dataset.hotkey.toUpperCase(),
+                card,
+            ])
+        );
+    }
+
+    function updateToggleState() {
+        toggleButtons.forEach((button) => {
+            button.setAttribute("aria-pressed", String(button.dataset.modeToggle === currentMode));
+        });
+    }
+
+    function renderCards(mode) {
+        const cards = mode === "private" ? privateCards : publicCards;
+        toolGrid.innerHTML = cards.map(renderCard).join("");
+        updateHotkeys();
+    }
+
+    function setMode(nextMode) {
+        if (nextMode === currentMode) {
+            return;
+        }
+
+        toolGrid.classList.add("is-flipping");
+        window.setTimeout(() => {
+            currentMode = nextMode;
+            renderCards(currentMode);
+            updateToggleState();
+            window.requestAnimationFrame(() => {
+                toolGrid.classList.remove("is-flipping");
+            });
+        }, 260);
+    }
+
+    toggleButtons.forEach((button) => {
+        button.addEventListener("click", () => setMode(button.dataset.modeToggle));
+    });
 
     document.addEventListener("keydown", (event) => {
         if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey || event.repeat) {
@@ -391,12 +401,13 @@ Comprehensive tracking and performance dashboard for global market indices and m
         event.preventDefault();
         target.click();
     });
+
+    renderCards(currentMode);
 </script>
-<!-- Footer -->
 <footer class="w-full border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950">
 <div class="flex flex-col md:flex-row justify-between items-center py-8 px-8 max-w-7xl mx-auto w-full gap-4 font-manrope text-sm">
 <div class="text-neutral-500 dark:text-neutral-400">
-                © 2024 Investor Portal. All rights reserved.
+                &copy; 2024 Investor Portal. All rights reserved.
             </div>
 <div class="flex gap-8">
 <a class="text-neutral-500 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" href="#">Privacy Policy</a>
@@ -405,4 +416,5 @@ Comprehensive tracking and performance dashboard for global market indices and m
 </div>
 </div>
 </footer>
-</body></html>
+</body>
+</html>
