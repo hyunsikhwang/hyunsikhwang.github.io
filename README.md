@@ -55,7 +55,7 @@
 
 ### Private 모드
 
-우측 상단의 `Private` 토글을 선택하면 Public 카드가 전환 애니메이션과 함께 사라지고, 아래 5개 private 메뉴 카드가 표시됩니다.
+우측 상단의 `Private` 토글을 선택하면 Public 카드가 전환 애니메이션과 함께 사라지고, 아래 6개 private 메뉴 카드가 표시됩니다.
 
 | 단축키 | 서비스 | URL | 아이콘 |
 | --- | --- | --- | --- |
@@ -64,6 +64,7 @@
 | `3` | HIRA Stats Explorer | `https://hira-stats-explorer-239485161480.us-west1.run.app` | `bar_chart` |
 | `4` | Real Estate Explorer | `https://real-estate-explorer-239485161480.us-west1.run.app` | `real_estate_agent` |
 | `5` | PDF Password Remover | `https://pdf-password-remover-239485161480.us-west1.run.app` | `picture_as_pdf` |
+| `6` | World Cup Bracket Standings | `https://service-2026-world-cup-bracket-standings-239485161480.us-west1.run.app` | `sports_soccer` |
 
 ## 주요 동작
 
