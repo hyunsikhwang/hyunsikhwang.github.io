@@ -133,39 +133,73 @@
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
         }
         .tool-grid {
-            perspective: 900px;
+            perspective: 1400px;
+            perspective-origin: center center;
         }
         .tool-card {
             position: relative;
             min-height: 180px;
             overflow: hidden;
             transform: translateX(0) rotateY(0deg);
+            transform-style: preserve-3d;
             backface-visibility: hidden;
             transform-origin: center center;
-            transition: transform 220ms ease, opacity 220ms ease;
-            will-change: transform, opacity;
+            transition:
+                transform 360ms cubic-bezier(0.2, 0.8, 0.2, 1),
+                opacity 260ms ease,
+                box-shadow 360ms ease,
+                filter 360ms ease;
+            will-change: transform, opacity, box-shadow, filter;
+        }
+        .tool-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            border-radius: inherit;
+            background: linear-gradient(var(--card-shine-angle, 90deg), rgba(255, 255, 255, 0.52), rgba(255, 255, 255, 0) 42%, rgba(0, 0, 0, 0.14));
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 220ms ease;
         }
         .tool-card.is-exiting {
             opacity: 0;
             transition-delay: var(--card-delay, 0ms);
+            box-shadow: 0 22px 36px rgba(24, 24, 27, 0.16);
+            filter: brightness(0.96);
+        }
+        .tool-card.is-exiting::after {
+            opacity: 1;
         }
         .tool-grid[data-transition-direction="left"] .tool-card.is-exiting {
-            transform: translateX(-42px) rotateY(18deg) scale(0.96);
+            --card-shine-angle: 90deg;
+            transform: translateX(-84px) translateZ(18px) rotateY(-68deg) scale(0.94);
+            transform-origin: left center;
         }
         .tool-grid[data-transition-direction="right"] .tool-card.is-exiting {
-            transform: translateX(42px) rotateY(-18deg) scale(0.96);
+            --card-shine-angle: 270deg;
+            transform: translateX(84px) translateZ(18px) rotateY(68deg) scale(0.94);
+            transform-origin: right center;
         }
         .tool-card.is-entering {
-            animation-duration: 320ms;
+            animation-duration: 460ms;
             animation-fill-mode: both;
-            animation-timing-function: ease;
+            animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+            animation-delay: var(--card-delay, 0ms);
+        }
+        .tool-card.is-entering::after {
+            animation: cardSurfaceShine 460ms cubic-bezier(0.16, 1, 0.3, 1) both;
             animation-delay: var(--card-delay, 0ms);
         }
         .tool-grid[data-transition-direction="left"] .tool-card.is-entering {
-            animation-name: cardSlideInFromRight;
+            --card-shine-angle: 270deg;
+            transform-origin: right center;
+            animation-name: cardTurnInFromRight;
         }
         .tool-grid[data-transition-direction="right"] .tool-card.is-entering {
-            animation-name: cardSlideInFromLeft;
+            --card-shine-angle: 90deg;
+            transform-origin: left center;
+            animation-name: cardTurnInFromLeft;
         }
         .tool-card > div:first-of-type {
             position: relative;
@@ -195,24 +229,51 @@
         .tool-card:active .serial-launch {
             transform: translateY(1px);
         }
-        @keyframes cardSlideInFromRight {
+        @keyframes cardTurnInFromRight {
             from {
                 opacity: 0;
-                transform: translateX(42px) rotateY(-18deg) scale(0.96);
+                transform: translateX(92px) translateZ(22px) rotateY(72deg) scale(0.94);
+                filter: brightness(0.96);
+                box-shadow: 0 22px 36px rgba(24, 24, 27, 0.16);
+            }
+            64% {
+                opacity: 1;
+                transform: translateX(-8px) translateZ(8px) rotateY(-5deg) scale(1.01);
             }
             to {
                 opacity: 1;
                 transform: translateX(0) rotateY(0deg) scale(1);
+                filter: brightness(1);
+                box-shadow: none;
             }
         }
-        @keyframes cardSlideInFromLeft {
+        @keyframes cardTurnInFromLeft {
             from {
                 opacity: 0;
-                transform: translateX(-42px) rotateY(18deg) scale(0.96);
+                transform: translateX(-92px) translateZ(22px) rotateY(-72deg) scale(0.94);
+                filter: brightness(0.96);
+                box-shadow: 0 22px 36px rgba(24, 24, 27, 0.16);
+            }
+            64% {
+                opacity: 1;
+                transform: translateX(8px) translateZ(8px) rotateY(5deg) scale(1.01);
             }
             to {
                 opacity: 1;
                 transform: translateX(0) rotateY(0deg) scale(1);
+                filter: brightness(1);
+                box-shadow: none;
+            }
+        }
+        @keyframes cardSurfaceShine {
+            from {
+                opacity: 0.9;
+            }
+            58% {
+                opacity: 0.38;
+            }
+            to {
+                opacity: 0;
             }
         }
         @media (max-width: 640px) {
@@ -394,6 +455,7 @@
 
     const toolGrid = document.getElementById("tool-grid");
     const toggleButtons = Array.from(document.querySelectorAll("[data-mode-toggle]"));
+    const cardExitDurationMs = 320;
     let currentMode = "public";
     let hotkeyTargets = new Map();
     let touchStartX = 0;
@@ -489,7 +551,7 @@ ${description}
             currentMode = nextMode;
             renderCards(currentMode, true, direction);
             updateToggleState();
-        }, 280);
+        }, cardExitDurationMs);
     }
 
     toggleButtons.forEach((button) => {
