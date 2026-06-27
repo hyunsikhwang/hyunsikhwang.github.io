@@ -23,8 +23,10 @@
 
 ### Main
 
-- 제목: `Financial Intelligence Suite`
-- 설명: `Select a specialized module to begin your market analysis. Professional grade tools for institutional accuracy.`
+- Public 제목: `Financial Intelligence Suite`
+- Public 설명: `Select a specialized module to begin your market analysis. Professional grade tools for institutional accuracy.`
+- Private 제목: `Private Workspace`
+- Private 설명: `Open a personal dashboard or utility for private workflows. Dedicated tools for everyday tasks and quick access.`
 - 카드 그리드: 반응형 1~4열 구성
 - 카드 hover 시 설명 툴팁 표시
 - 카드 우측 상단에는 실행 단축키 번호/문자 표시
@@ -71,6 +73,7 @@
 ## 주요 동작
 
 - `Public` / `Private` 버튼 클릭 시 현재 모드가 전환됩니다.
+- 모드 전환 시 상단 제목과 설명도 Public / Private 용도에 맞게 변경됩니다.
 - 좌우 방향키(`ArrowLeft`, `ArrowRight`)로 Public / Private 모드를 번갈아 전환할 수 있으며, 입력 방향에 맞춰 카드가 손으로 넘기듯 전환됩니다.
 - 모바일 터치 환경에서는 일정 거리 이상의 가로 스와이프로 모드를 전환할 수 있습니다.
 - 현재 화면에 표시된 카드의 단축키를 누르면 해당 카드 링크가 실행됩니다.

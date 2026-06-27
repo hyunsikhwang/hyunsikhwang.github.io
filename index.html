@@ -315,13 +315,23 @@
 </header>
 <main class="max-w-7xl mx-auto px-8 py-xxl min-h-screen">
 <div class="mb-xxl text-center max-w-2xl mx-auto">
-<h1 class="font-h1 text-h1 mb-md">Financial Intelligence Suite</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant">Select a specialized module to begin your market analysis. Professional grade tools for institutional accuracy.</p>
+<h1 class="font-h1 text-h1 mb-md" id="mode-title">Financial Intelligence Suite</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant" id="mode-description">Select a specialized module to begin your market analysis. Professional grade tools for institutional accuracy.</p>
 </div>
 <div class="tool-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-lg justify-center max-w-7xl mx-auto" id="tool-grid"></div>
 </main>
 <script>
     const cardClass = "tool-card relative h-full bg-surface-container-lowest border border-outline-variant/60 p-lg flex flex-col justify-between group hover:border-primary hover:shadow-sm transition-all duration-300 rounded-xl";
+    const modeCopy = {
+        public: {
+            title: "Financial Intelligence Suite",
+            description: "Select a specialized module to begin your market analysis. Professional grade tools for institutional accuracy.",
+        },
+        private: {
+            title: "Private Workspace",
+            description: "Open a personal dashboard or utility for private workflows. Dedicated tools for everyday tasks and quick access.",
+        },
+    };
     const publicCards = [
         {
             key: "1",
@@ -454,6 +464,8 @@
     ];
 
     const toolGrid = document.getElementById("tool-grid");
+    const modeTitle = document.getElementById("mode-title");
+    const modeDescription = document.getElementById("mode-description");
     const toggleButtons = Array.from(document.querySelectorAll("[data-mode-toggle]"));
     const cardExitDurationMs = 320;
     let currentMode = "public";
@@ -517,6 +529,12 @@ ${description}
         });
     }
 
+    function updateModeCopy() {
+        const copy = modeCopy[currentMode];
+        modeTitle.textContent = copy.title;
+        modeDescription.textContent = copy.description;
+    }
+
     function renderCards(mode, animate = false, direction = "left") {
         toolGrid.dataset.transitionDirection = direction;
         const cards = mode === "private" ? privateCards : publicCards;
@@ -550,6 +568,7 @@ ${description}
         window.setTimeout(() => {
             currentMode = nextMode;
             renderCards(currentMode, true, direction);
+            updateModeCopy();
             updateToggleState();
         }, cardExitDurationMs);
     }
@@ -609,6 +628,7 @@ ${description}
     }, { passive: true });
 
     renderCards(currentMode, false, "left");
+    updateModeCopy();
 </script>
 <footer class="w-full border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950">
 <div class="flex flex-col md:flex-row justify-between items-center py-8 px-8 max-w-7xl mx-auto w-full gap-4 font-manrope text-sm">
