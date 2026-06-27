@@ -139,7 +139,7 @@
             position: relative;
             min-height: 180px;
             overflow: hidden;
-            transform: rotateY(0deg);
+            transform: translateX(0) rotateY(0deg);
             backface-visibility: hidden;
             transform-origin: center center;
             transition: transform 220ms ease, opacity 220ms ease;
@@ -147,12 +147,25 @@
         }
         .tool-card.is-exiting {
             opacity: 0;
-            transform: rotateY(78deg) scale(0.96);
             transition-delay: var(--card-delay, 0ms);
         }
+        .tool-grid[data-transition-direction="left"] .tool-card.is-exiting {
+            transform: translateX(-42px) rotateY(18deg) scale(0.96);
+        }
+        .tool-grid[data-transition-direction="right"] .tool-card.is-exiting {
+            transform: translateX(42px) rotateY(-18deg) scale(0.96);
+        }
         .tool-card.is-entering {
-            animation: cardFlipIn 320ms ease both;
+            animation-duration: 320ms;
+            animation-fill-mode: both;
+            animation-timing-function: ease;
             animation-delay: var(--card-delay, 0ms);
+        }
+        .tool-grid[data-transition-direction="left"] .tool-card.is-entering {
+            animation-name: cardSlideInFromRight;
+        }
+        .tool-grid[data-transition-direction="right"] .tool-card.is-entering {
+            animation-name: cardSlideInFromLeft;
         }
         .tool-card > div:first-of-type {
             position: relative;
@@ -182,14 +195,24 @@
         .tool-card:active .serial-launch {
             transform: translateY(1px);
         }
-        @keyframes cardFlipIn {
+        @keyframes cardSlideInFromRight {
             from {
                 opacity: 0;
-                transform: rotateY(-78deg) scale(0.96);
+                transform: translateX(42px) rotateY(-18deg) scale(0.96);
             }
             to {
                 opacity: 1;
-                transform: rotateY(0deg) scale(1);
+                transform: translateX(0) rotateY(0deg) scale(1);
+            }
+        }
+        @keyframes cardSlideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-42px) rotateY(18deg) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) rotateY(0deg) scale(1);
             }
         }
         @media (max-width: 640px) {
@@ -432,31 +455,45 @@ ${description}
         });
     }
 
-    function renderCards(mode, animate = false) {
+    function renderCards(mode, animate = false, direction = "left") {
+        toolGrid.dataset.transitionDirection = direction;
         const cards = mode === "private" ? privateCards : publicCards;
         toolGrid.innerHTML = cards.map((card, index) => renderCard(card, index, animate)).join("");
+        if (animate) {
+            Array.from(toolGrid.querySelectorAll(".tool-card.is-entering")).forEach((card) => {
+                card.addEventListener("animationend", () => {
+                    card.classList.remove("is-entering");
+                }, { once: true });
+            });
+        }
         updateHotkeys();
     }
 
-    function setMode(nextMode) {
+    function getDirectionForMode(nextMode) {
+        return nextMode === "private" ? "left" : "right";
+    }
+
+    function setMode(nextMode, direction = getDirectionForMode(nextMode)) {
         if (nextMode === currentMode) {
             return;
         }
 
+        toolGrid.dataset.transitionDirection = direction;
         Array.from(toolGrid.querySelectorAll(".tool-card")).forEach((card, index) => {
             card.style.setProperty("--card-delay", `${index * 24}ms`);
+            card.classList.remove("is-entering");
             card.classList.add("is-exiting");
         });
 
         window.setTimeout(() => {
             currentMode = nextMode;
-            renderCards(currentMode, true);
+            renderCards(currentMode, true, direction);
             updateToggleState();
         }, 280);
     }
 
     toggleButtons.forEach((button) => {
-        button.addEventListener("click", () => setMode(button.dataset.modeToggle));
+        button.addEventListener("click", () => setMode(button.dataset.modeToggle, getDirectionForMode(button.dataset.modeToggle)));
     });
 
     document.addEventListener("keydown", (event) => {
@@ -471,7 +508,7 @@ ${description}
 
         if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
             event.preventDefault();
-            setMode(getAlternateMode());
+            setMode(getAlternateMode(), event.key === "ArrowLeft" ? "left" : "right");
             return;
         }
 
@@ -506,10 +543,10 @@ ${description}
             return;
         }
 
-        setMode(getAlternateMode());
+        setMode(getAlternateMode(), deltaX < 0 ? "left" : "right");
     }, { passive: true });
 
-    renderCards(currentMode);
+    renderCards(currentMode, false, "left");
 </script>
 <footer class="w-full border-t border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950">
 <div class="flex flex-col md:flex-row justify-between items-center py-8 px-8 max-w-7xl mx-auto w-full gap-4 font-manrope text-sm">
