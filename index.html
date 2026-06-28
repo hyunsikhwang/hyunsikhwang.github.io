@@ -173,13 +173,13 @@
         }
         .tool-grid[data-transition-direction="left"] .tool-card.is-exiting {
             --card-shine-angle: 90deg;
-            transform: translateX(-84px) translateZ(18px) rotateY(-68deg) scale(0.94);
-            transform-origin: left center;
+            transform: translateX(-58px) translateZ(24px) rotateY(-82deg) scale(0.94);
+            transform-origin: center center;
         }
         .tool-grid[data-transition-direction="right"] .tool-card.is-exiting {
             --card-shine-angle: 270deg;
-            transform: translateX(84px) translateZ(18px) rotateY(68deg) scale(0.94);
-            transform-origin: right center;
+            transform: translateX(58px) translateZ(24px) rotateY(82deg) scale(0.94);
+            transform-origin: center center;
         }
         .tool-card.is-entering {
             animation-duration: 460ms;
@@ -193,12 +193,12 @@
         }
         .tool-grid[data-transition-direction="left"] .tool-card.is-entering {
             --card-shine-angle: 270deg;
-            transform-origin: right center;
+            transform-origin: center center;
             animation-name: cardTurnInFromRight;
         }
         .tool-grid[data-transition-direction="right"] .tool-card.is-entering {
             --card-shine-angle: 90deg;
-            transform-origin: left center;
+            transform-origin: center center;
             animation-name: cardTurnInFromLeft;
         }
         .tool-card > div:first-of-type {
@@ -232,13 +232,13 @@
         @keyframes cardTurnInFromRight {
             from {
                 opacity: 0;
-                transform: translateX(92px) translateZ(22px) rotateY(72deg) scale(0.94);
+                transform: translateX(58px) translateZ(24px) rotateY(82deg) scale(0.94);
                 filter: brightness(0.96);
                 box-shadow: 0 22px 36px rgba(24, 24, 27, 0.16);
             }
             64% {
                 opacity: 1;
-                transform: translateX(-8px) translateZ(8px) rotateY(-5deg) scale(1.01);
+                transform: translateX(-6px) translateZ(10px) rotateY(-7deg) scale(1.01);
             }
             to {
                 opacity: 1;
@@ -250,13 +250,13 @@
         @keyframes cardTurnInFromLeft {
             from {
                 opacity: 0;
-                transform: translateX(-92px) translateZ(22px) rotateY(-72deg) scale(0.94);
+                transform: translateX(-58px) translateZ(24px) rotateY(-82deg) scale(0.94);
                 filter: brightness(0.96);
                 box-shadow: 0 22px 36px rgba(24, 24, 27, 0.16);
             }
             64% {
                 opacity: 1;
-                transform: translateX(8px) translateZ(8px) rotateY(5deg) scale(1.01);
+                transform: translateX(6px) translateZ(10px) rotateY(7deg) scale(1.01);
             }
             to {
                 opacity: 1;
