@@ -40,7 +40,7 @@
 
 ### Public 모드
 
-포털 기본 화면에는 아래 11개 모듈 카드가 포함되어 있습니다.
+포털 기본 화면에는 아래 12개 모듈 카드가 포함되어 있습니다.
 
 | 단축키 | 서비스 | URL | 아이콘 |
 | --- | --- | --- | --- |
@@ -55,6 +55,7 @@
 | `9` | DART Financial Analysis | `https://dart-financial-analysis-239485161480.us-west1.run.app` | `analytics` |
 | `A` | Global Market Index Dashboard | `https://global-market-index-dashboard-239485161480.us-west1.run.app` | `language` |
 | `B` | KOSPI Shock Recovery Analyzer | `https://kospi-shock-recovery-analyzer-239485161480.us-west1.run.app` | `stacked_line_chart` |
+| `C` | KiStock AI Studio | `https://kistock.ai.studio` | `auto_awesome` |
 
 ### Private 모드
 
