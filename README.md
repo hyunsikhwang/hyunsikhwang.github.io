@@ -50,7 +50,7 @@
 | `4` | Calendar Explorer | `https://stock-calendar-explorer.ai.studio` | `calendar_today` |
 | `5` | Volatility Analyzer | `https://kospi-volatility-returns-analyzer.ai.studio` | `show_chart` |
 | `6` | ETF Performance | `https://etf-performance.ai.studio` | `query_stats` |
-| `7` | Stock Performance | `https://stock-performance-239485161480.us-west1.run.app` | `trending_up` |
+| `7` | Stock Performance | `https://stock-performance.ai.studio` | `trending_up` |
 | `8` | Financial Sentinel | `https://financial-sentinel-239485161480.us-west1.run.app` | `shield` |
 | `9` | DART Financial Analysis | `https://dart-financial-analysis-239485161480.us-west1.run.app` | `analytics` |
 | `A` | Global Market Index Dashboard | `https://global-market-index-dashboard-239485161480.us-west1.run.app` | `language` |
