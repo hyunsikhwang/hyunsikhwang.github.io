@@ -47,7 +47,7 @@
 | `1` | Daily K-Stock Dashboard | `https://daily-k-stock-dashboard-239485161480.us-west1.run.app` | `dashboard` |
 | `2` | Market Pulse KR | `https://krx-market-pulse.ai.studio` | `monitoring` |
 | `3` | Global Index Performance | `https://global-stock-index-performance-239485161480.us-west1.run.app/` | `public` |
-| `4` | Calendar Explorer | `https://kospi-calendar-explorer-239485161480.us-west1.run.app/` | `calendar_today` |
+| `4` | Calendar Explorer | `https://stock-calendar-explorer.ai.studio` | `calendar_today` |
 | `5` | Volatility Analyzer | `https://kospi-volatility-returns-analyzer-239485161480.us-west1.run.app/` | `show_chart` |
 | `6` | ETF Performance | `https://etf-performance.ai.studio` | `query_stats` |
 | `7` | Stock Performance | `https://stock-performance-239485161480.us-west1.run.app` | `trending_up` |
