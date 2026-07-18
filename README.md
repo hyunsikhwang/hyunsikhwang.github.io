@@ -65,7 +65,7 @@
 | --- | --- | --- | --- |
 | `1` | Retirement Countdown | `https://retirement-countdown.ai.studio` | `timer` |
 | `2` | Naver Blog Scraper | `https://naver-blog-scraper.ai.studio` | `article` |
-| `3` | HIRA Stats Explorer | `https://hira-stats-explorer-239485161480.us-west1.run.app` | `bar_chart` |
+| `3` | HIRA Stats Explorer | `https://hira-stats-explorer.ai.studio` | `bar_chart` |
 | `4` | Real Estate Explorer | `https://real-estate-explorer-kr.wonderful-writing-32.chatgpt.site/` | `real_estate_agent` |
 | `5` | PDF Password Remover | `https://pdf-password-remover-239485161480.us-west1.run.app` | `picture_as_pdf` |
 | `6` | Social Screenshot Studio | `https://social-screenshot-studio.ai.studio` | `photo_camera` |
