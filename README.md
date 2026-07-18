@@ -53,7 +53,7 @@
 | `7` | Stock Performance | `https://stock-performance.ai.studio` | `trending_up` |
 | `8` | Financial Sentinel | `https://financial-sentinel.ai.studio` | `shield` |
 | `9` | DART Financial Analysis | `https://dart-financial-analysis-239485161480.us-west1.run.app` | `analytics` |
-| `A` | Global Market Index Dashboard | `https://global-market-index-dashboard-239485161480.us-west1.run.app` | `language` |
+| `A` | Global Market Index Dashboard | `https://global-market-index.ai.studio` | `language` |
 | `B` | KOSPI Shock Recovery Analyzer | `https://kospi-shock-recover.ai.studio` | `stacked_line_chart` |
 | `C` | KiStock AI Studio | `https://kistock.ai.studio` | `auto_awesome` |
 
