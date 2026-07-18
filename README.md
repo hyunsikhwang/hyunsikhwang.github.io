@@ -44,7 +44,7 @@
 
 | 단축키 | 서비스 | URL | 아이콘 |
 | --- | --- | --- | --- |
-| `1` | Daily K-Stock Dashboard | `https://daily-k-stock-dashboard-239485161480.us-west1.run.app` | `dashboard` |
+| `1` | Daily K-Stock Dashboard | `https://daily-kr-stock.ai.studio` | `dashboard` |
 | `2` | Market Pulse KR | `https://krx-market-pulse.ai.studio` | `monitoring` |
 | `3` | Global Index Performance | `https://global-stock-index-performance-239485161480.us-west1.run.app/` | `public` |
 | `4` | Calendar Explorer | `https://stock-calendar-explorer.ai.studio` | `calendar_today` |
