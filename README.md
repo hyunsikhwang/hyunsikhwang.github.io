@@ -54,7 +54,7 @@
 | `8` | Financial Sentinel | `https://financial-sentinel-239485161480.us-west1.run.app` | `shield` |
 | `9` | DART Financial Analysis | `https://dart-financial-analysis-239485161480.us-west1.run.app` | `analytics` |
 | `A` | Global Market Index Dashboard | `https://global-market-index-dashboard-239485161480.us-west1.run.app` | `language` |
-| `B` | KOSPI Shock Recovery Analyzer | `https://kospi-shock-recovery-analyzer-239485161480.us-west1.run.app` | `stacked_line_chart` |
+| `B` | KOSPI Shock Recovery Analyzer | `https://kospi-shock-recover.ai.studio` | `stacked_line_chart` |
 | `C` | KiStock AI Studio | `https://kistock.ai.studio` | `auto_awesome` |
 
 ### Private 모드
