@@ -69,7 +69,7 @@
 | `4` | Real Estate Explorer | `https://real-estate-explorer-kr.wonderful-writing-32.chatgpt.site/` | `real_estate_agent` |
 | `5` | PDF Password Remover | `https://pdf-free.ai.studio` | `picture_as_pdf` |
 | `6` | Social Screenshot Studio | `https://social-screenshot-studio.ai.studio` | `photo_camera` |
-| `7` | Memory Vault | `https://memory-vault.ai.studio` | `folder_special` |
+| `7` | Memory Vault | `https://memoir.ai.studio` | `folder_special` |
 
 ## 주요 동작
 
