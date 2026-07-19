@@ -59,7 +59,7 @@
 
 ### Private 모드
 
-우측 상단의 `Private` 토글을 선택하면 Public 카드가 전환 애니메이션과 함께 사라지고, 아래 6개 private 메뉴 카드가 표시됩니다.
+우측 상단의 `Private` 토글을 선택하면 Public 카드가 전환 애니메이션과 함께 사라지고, 아래 7개 private 메뉴 카드가 표시됩니다.
 
 | 단축키 | 서비스 | URL | 아이콘 |
 | --- | --- | --- | --- |
@@ -69,6 +69,7 @@
 | `4` | Real Estate Explorer | `https://real-estate-explorer-kr.wonderful-writing-32.chatgpt.site/` | `real_estate_agent` |
 | `5` | PDF Password Remover | `https://pdf-free.ai.studio` | `picture_as_pdf` |
 | `6` | Social Screenshot Studio | `https://social-screenshot-studio.ai.studio` | `photo_camera` |
+| `7` | Memory Vault | `https://memory-vault.ai.studio` | `folder_special` |
 
 ## 주요 동작
 
